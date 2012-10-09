@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.hudsonci.plugins</groupId>
+    <artifactId>gerrit-build-config</artifactId>
+    <packaging>jar</packaging>
+    <version>1.2.8-SNAPSHOT</version>
+    <name>Build Config</name>
+
+    <parent>
+        <groupId>org.hudsonci.plugins</groupId>
+        <artifactId>gerrit-trigger-parent</artifactId>
+        <version>1.6.4-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.net.id>rsandell</java.net.id>
+    </properties>
+
+    <scm>
+        <connection>scm:git:ssh://github.com/hudson3-plugins/gerrit-trigger-plugin.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/hudson3-plugins/gerrit-trigger-plugin.git</developerConnection>
+        <url>https://github.com/hudson3-plugins/gerrit-trigger-plugin</url>
+    </scm>
+</project>

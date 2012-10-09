@@ -1,0 +1,27 @@
+<p>Gerritのpatchset-craetedイベントでビルドを開始するトリガです。</p>
+<p>
+    <u>以下のパラメータが、トリガーされたビルドに提供されます:</u>
+</p>
+<ul>
+    <li><strong>GERRIT_CHANGE_ID</strong>: Gerrit Change-Id (SHA-1)</li>
+    <li><strong>GERRIT_CHANGE_SUBJECT</strong>: コミットメッセージの最初の一行</li>
+    <li><strong>GERRIT_CHANGE_NUMBER</strong>: チェンジ番号</li>
+    <li><strong>GERRIT_CHANGE_URL</strong>: チェンジへのURL</li>
+    <li><strong>GERRIT_PATCHSET_NUMBER</strong>: パッチセット番号</li>
+    <li><strong>GERRIT_PATCHSET_REVISION</strong>: パッチセットリビジョン</li>
+    <li><strong>GERRIT_PROJECT</strong>: プロジェクト名</li>
+    <li><strong>GERRIT_BRANCH</strong>: ブランチ名</li>
+    <li><strong>GERRIT_REFSPEC</strong>: パッチセット参照仕様 (refs/changes/xx/xxxx/z)</li>
+    <li><strong>GERRIT_CHANGE_OWNER</strong>: チェンジ・オーナーの名前とメールアドレス <i>&quot;Name&quot; &lt;name@somewhere.com&gt;</i>.</li>
+    <li><strong>GERRIT_CHANGE_OWNER_NAME</strong>: チェンジ・オーナーの名前</li>
+    <li><strong>GERRIT_CHANGE_OWNER_EMAIL</strong>: チェンジ・オーナーのメールアドレス</li>
+    <li><strong>GERRIT_PATCHSET_UPLOADER</strong>: パッチセット・アップローダーの名前とメールアドレス <i>&quot;Name&quot; &lt;name@somewhere.com&gt;</i>.</li>
+    <li><strong>GERRIT_PATCHSET_UPLOADER_NAME</strong>: パッチセット・アップローダーの名前</li>
+    <li><strong>GERRIT_PATCHSET_UPLOADER_EMAIL</strong>: パッチセット・アップローダーのメールアドレス</li>
+</ul>
+<p>
+    <i>
+        パラメータはビルド時に環境変数として参照できます。
+        例: <strong>$GERRIT_REFSPEC</strong>
+    </i>
+</p>

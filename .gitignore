@@ -1,0 +1,16 @@
+work
+target
+.svn
+.classpath
+.project
+.settings
+*/nb-configuration.xml
+nb-configuration.xml
+*.iml
+*/*.iml
+*.ipr
+*.iws
+bin
+generated-sources
+.checkstyle
+.idea

@@ -3,13 +3,13 @@
     <parent>
         <groupId>org.hudsonci.plugins</groupId>
         <artifactId>gerrit-trigger-parent</artifactId>
-        <version>1.6.4-SNAPSHOT</version>
+        <version>1.6.4-h-1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <groupId>org.hudsonci.plugins</groupId>
     <artifactId>gerrit-trigger</artifactId>
-    <version>2.5.3-SNAPSHOT</version>
+    <version>2.5.3-h-1-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <name>Gerrit Trigger</name>
     <description>Integrates with Gerrit code review.</description>
@@ -61,19 +61,12 @@
         <dependency>
             <groupId>org.hudsonci.plugins</groupId>
             <artifactId>gerrit-events</artifactId>
-            <version>1.2.8-SNAPSHOT</version>
+            <version>1.2.8-h-1-SNAPSHOT</version>
         </dependency>
-<!--
         <dependency>
-            <groupId>org.jenkinsci.plugins</groupId>
+            <groupId>org.hudsonci.plugins</groupId>
             <artifactId>git</artifactId>
-            <version>1.1.10</version>
-        </dependency>
--->
-        <dependency>
-            <groupId>org.eclipse.hudson.plugins</groupId>
-            <artifactId>git</artifactId>
-            <version>3.0.1</version>
+            <version>2.2.1-h-1</version>
         </dependency>
         <dependency>
             <groupId>com.sonyericsson.hudson.plugins.rebuild</groupId>
@@ -164,16 +157,16 @@
                     <contextPath>/hudson</contextPath>
                 </configuration>
             </plugin>-->
-<plugin>
-    <groupId>org.eclipse.hudson.tools</groupId>
-    <artifactId>maven-hpi-plugin</artifactId>
-    <version>3.0.0-RC3</version>
-               <extensions>true</extensions>
+            <plugin>
+                <groupId>org.eclipse.hudson.tools</groupId>
+                <artifactId>maven-hpi-plugin</artifactId>
+                <version>3.0.0-RC3</version>
+                <extensions>true</extensions>
                 <configuration>
                     <showDeprecation>true</showDeprecation>
                     <contextPath>/hudson</contextPath>
                 </configuration>
-</plugin>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -182,7 +175,7 @@
                     <dependency>
                         <groupId>org.hudsonci.plugins</groupId>
                         <artifactId>gerrit-build-config</artifactId>
-                        <version>1.2.8-SNAPSHOT</version>
+                        <version>1.2.8-h-1-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
                 <executions>
@@ -231,18 +224,9 @@
         </plugins>
     </reporting>
 
-<!--
-    <distributionManagement>
-        <repository>
-            <id>maven.jenkins-ci.org</id>
-            <url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
--->
-
     <scm>
-        <connection>scm:git:ssh://github.com/jenkinsci/gerrit-trigger-plugin.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/jenkinsci/gerrit-trigger-plugin.git</developerConnection>
-        <url>https://github.com/jenkinsci/gerrit-trigger-plugin</url>
+        <connection>scm:git:ssh://github.com/hudson3-plugins/gerrit-trigger-plugin.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/hudson3-plugins/gerrit-trigger-plugin.git</developerConnection>
+        <url>https://github.com/hudson3-plugins/gerrit-trigger-plugin</url>
     </scm>
 </project>

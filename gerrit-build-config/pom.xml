@@ -3,13 +3,13 @@
     <groupId>org.hudsonci.plugins</groupId>
     <artifactId>gerrit-build-config</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.8-SNAPSHOT</version>
+    <version>1.2.8-h-1-SNAPSHOT</version>
     <name>Build Config</name>
 
     <parent>
         <groupId>org.hudsonci.plugins</groupId>
         <artifactId>gerrit-trigger-parent</artifactId>
-        <version>1.6.4-SNAPSHOT</version>
+        <version>1.6.4-h-1-SNAPSHOT</version>
     </parent>
 
     <properties>

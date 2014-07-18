@@ -82,7 +82,7 @@ public class BackCompat252HudsonTest extends HudsonTestCase {
         server = SshdServerMock.getInstance();
         server.returnCommandFor("gerrit ls-projects", SshdServerMock.EofCommandMock.class);
         server.returnCommandFor(GERRIT_STREAM_EVENTS, SshdServerMock.CommandMock.class);
-        server.returnCommandFor("gerrit approve.*", SshdServerMock.EofCommandMock.class);
+        server.returnCommandFor("gerrit review.*", SshdServerMock.EofCommandMock.class);
         server.returnCommandFor("gerrit version", SshdServerMock.EofCommandMock.class);
         super.setUp();
     }

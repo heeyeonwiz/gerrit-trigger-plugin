@@ -74,7 +74,7 @@ import com.sonyericsson.hudson.plugins.gerrit.trigger.mock.SshdServerMock;
  */
 public class SpecGerritTriggerHudsonTest extends HudsonTestCase {
 
-    //TODO Fix the SshdServerMock so that asserts can be done on approve commands.
+    //TODO Fix the SshdServerMock so that asserts can be done on review commands.
 
     /**
      * The stream-events command.
@@ -91,12 +91,12 @@ public class SpecGerritTriggerHudsonTest extends HudsonTestCase {
         server = SshdServerMock.getInstance();
         server.returnCommandFor("gerrit ls-projects", SshdServerMock.EofCommandMock.class);
         server.returnCommandFor(GERRIT_STREAM_EVENTS, SshdServerMock.CommandMock.class);
-        server.returnCommandFor("gerrit approve.*", SshdServerMock.EofCommandMock.class);
+        server.returnCommandFor("gerrit review.*", SshdServerMock.EofCommandMock.class);
         server.returnCommandFor("gerrit version", SshdServerMock.EofCommandMock.class);
         super.setUp();
         Hudson.getInstance().getPluginCenter().doInstallPlugin(GerritProject.class.getCanonicalName());
         System.out.println(Hudson.getInstance().getPluginCenter().getInstalledPlugins());
-        
+
     }
 
     @Override
@@ -283,7 +283,7 @@ public class SpecGerritTriggerHudsonTest extends HudsonTestCase {
     public void testDoubleTriggeredOnCommentAdded() throws Exception {
     	Hudson h = Hudson.getInstance();
     	WebClient wc = createWebClient();
-    	
+
         PluginImpl.getInstance().getConfig().setCategories(Setup.createCodeReviewVerdictCategoryList());
         FreeStyleProject project = DuplicatesUtil.createGerritTriggeredJobForCommentAdded(this, "projectX");
         project.getBuildersList().add(new SleepBuilder(2000));

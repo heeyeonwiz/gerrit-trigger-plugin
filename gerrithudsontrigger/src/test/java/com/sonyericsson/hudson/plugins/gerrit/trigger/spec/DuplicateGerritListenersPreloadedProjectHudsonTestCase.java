@@ -27,16 +27,11 @@ package com.sonyericsson.hudson.plugins.gerrit.trigger.spec;
 
 import com.sonyericsson.hudson.plugins.gerrit.gerritevents.GerritEventListener;
 import com.sonyericsson.hudson.plugins.gerrit.gerritevents.GerritHandler;
+import com.sonyericsson.hudson.plugins.gerrit.trigger.GerritHudsonTestCase;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.PluginImpl;
 
-import hudson.model.Hudson;
-import hudson.model.Item;
 import hudson.model.FreeStyleProject;
 
-import org.hudsonci.inject.Smoothie;
-import org.hudsonci.inject.SmoothieUtil;
-import org.hudsonci.inject.internal.SmoothieContainerBootstrap;
-import org.jvnet.hudson.test.HudsonTestCase;
 import org.jvnet.hudson.test.recipes.LocalData;
 import org.powermock.reflect.Whitebox;
 
@@ -51,7 +46,7 @@ import static com.sonyericsson.hudson.plugins.gerrit.trigger.mock.DuplicatesUtil
  *
  * @author Robert Sandell &lt;robert.sandell@sonyericsson.com&gt;
  */
-public class DuplicateGerritListenersPreloadedProjectHudsonTestCase extends HudsonTestCase {
+public class DuplicateGerritListenersPreloadedProjectHudsonTestCase extends GerritHudsonTestCase {
 public void setUp() throws Exception {
 	System.setProperty("hudson.PluginStrategy", "hudson.ClassicPluginStrategy");
 	super.setUp();

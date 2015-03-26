@@ -24,10 +24,10 @@
 
 package com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.data;
 
+import com.sonyericsson.hudson.plugins.gerrit.trigger.GerritHudsonTestCase;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.model.Cause.UserCause;
-import org.jvnet.hudson.test.HudsonTestCase;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -36,7 +36,7 @@ import java.util.concurrent.ExecutionException;
  * Tests the TriggerContext.Wrap class in a Hudson context.
  * @author Robert Sandell &lt;robert.sandell@sonyericsson.com&gt;
  */
-public class TriggerContextTriggeredItemEntityHudsonTest extends HudsonTestCase {
+public class TriggerContextTriggeredItemEntityHudsonTest extends GerritHudsonTestCase {
 
 
     /**

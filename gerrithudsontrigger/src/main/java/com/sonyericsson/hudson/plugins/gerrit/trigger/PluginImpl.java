@@ -32,17 +32,12 @@ import com.sonyericsson.hudson.plugins.gerrit.gerritevents.dto.GerritEvent;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.config.Config;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.config.IGerritHudsonTriggerConfig;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.data.TriggerContextConverter;
-
 import hudson.Plugin;
 import hudson.model.Hudson;
 import hudson.model.Items;
 import hudson.model.Run;
 import hudson.security.Permission;
 import hudson.security.PermissionGroup;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,6 +45,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Main Plugin entrance.
@@ -80,7 +77,6 @@ public class PluginImpl extends Plugin {
     private static final Logger logger = LoggerFactory.getLogger(PluginImpl.class);
     private transient GerritHandler gerritEventManager;
     private transient GerritProjectListUpdater projectListUpdater;
-    private static PluginImpl instance;
     private IGerritHudsonTriggerConfig config;
     private transient Collection<GerritEventListener> savedEventListeners;
     private transient Collection<ConnectionListener> savedConnectionListeners;
@@ -89,7 +85,6 @@ public class PluginImpl extends Plugin {
      * Constructor.
      */
     public PluginImpl() {
-        instance = this;
     }
 
     /**
@@ -107,7 +102,22 @@ public class PluginImpl extends Plugin {
      * @return the singleton.
      */
     public static PluginImpl getInstance() {
-    	return Hudson.getInstance().getPlugin(PluginImpl.class);
+        PluginImpl pluginImpl = null;
+
+        if (Hudson.getInstance() != null) {
+            pluginImpl = Hudson.getInstance().getPlugin(PluginImpl.class);
+        }
+
+        if (pluginImpl == null) {
+            // Only for testing
+            pluginImpl = new PluginImpl();
+            try {
+                pluginImpl.start();
+            } catch (Exception ex) {
+                logger.error("Plugin start failed.", ex);
+            }
+        }
+        return pluginImpl;
     }
 
     @Override

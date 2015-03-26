@@ -26,9 +26,9 @@ package com.sonyericsson.hudson.plugins.gerrit.trigger.project;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSelect;
+import com.sonyericsson.hudson.plugins.gerrit.trigger.GerritHudsonTestCase;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.mock.DuplicatesUtil;
 import hudson.model.FreeStyleProject;
-import org.jvnet.hudson.test.HudsonTestCase;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,7 +36,7 @@ import java.util.List;
  * Tests for the project setup for a Gerrit triggered project.
  * @author Tomas Westling &lt;tomas.westling@sonymobile.com&gt;
  */
-public class GerritTriggerProjectHudsonTest extends HudsonTestCase {
+public class GerritTriggerProjectHudsonTest extends GerritHudsonTestCase {
 
     /**
      * Tests that the dropdown list for comment added is populated with the correct values.
@@ -45,6 +45,7 @@ public class GerritTriggerProjectHudsonTest extends HudsonTestCase {
     public void testPopulateDropDown() throws Exception {
         FreeStyleProject project = DuplicatesUtil.createGerritTriggeredJobForCommentAdded(this, "myGerritProject");
         WebClient wc = createWebClient();
+        wc.setThrowExceptionOnScriptError(false);
         HtmlPage page = wc.goTo("/job/myGerritProject/configure");
         List<HtmlElement> elements = page.getDocumentElement().getElementsByAttribute("td", "class", "setting-name");
         HtmlElement tr = null;

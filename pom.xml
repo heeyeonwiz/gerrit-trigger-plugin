@@ -1,19 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.eclipse.hudson.plugins</groupId>
+        <artifactId>hudson-plugin-parent</artifactId>
+        <version>3.2.0</version>
+    </parent>
+    
     <groupId>org.hudsonci.plugins</groupId>
     <artifactId>gerrit-trigger-parent</artifactId>
-    <version>1.6.4-h-1-SNAPSHOT</version>
+    <version>1.6.4-h-2</version>
     <packaging>pom</packaging>
 
     <name>Gerrit Trigger Pom</name>
     <url>http://wiki.hudson-ci.org/display/HUDSON/Gerrit+Trigger</url>
     <description>Integrates with Gerrit code review.</description>
-
-    <parent>
-        <groupId>org.eclipse.hudson.plugins</groupId>
-        <artifactId>hudson-plugin-parent</artifactId>
-        <version>3.0.0-RC3</version>
-    </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -59,48 +60,6 @@
         </developer>
     </developers>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jdk14</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-	<dependency>
-	  <groupId>org.eclipse.hudson</groupId>
-	  <artifactId>hudson-core</artifactId>
-	  <version>3.0.0-RC3</version>
-	  <scope>provided</scope>
-	   <exclusions>
-	      <exclusion>
-		<groupId>org.eclipse.hudson.main</groupId>
-		<artifactId>hudson-cli</artifactId>
-	      </exclusion>
-	      <exclusion>
-		<groupId>org.eclipse.hudson.main</groupId>
-		<artifactId>hudson-remoting</artifactId>
-	      </exclusion>
-	   </exclusions>
-	</dependency>
-	<dependency>
-	  <groupId>org.eclipse.hudson</groupId>
-	  <artifactId>hudson-war</artifactId>
-	  <version>3.0.0-RC3</version>
-	  <type>war</type>
-	  <scope>test</scope>
-	</dependency>
-	<dependency>
-	  <groupId>org.eclipse.hudson</groupId>
-	  <artifactId>hudson-test-framework</artifactId>
-	  <version>3.0.0-RC3</version>
-	  <scope>test</scope>
-	</dependency>
-    </dependencies>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -133,8 +92,8 @@
                 <version>2.8</version>
                 <dependencies>
                     <dependency>
-                        <groupId>org.hudson-ci.plugins.gerrit</groupId>
-                        <artifactId>build-config</artifactId>
+                        <groupId>org.hudsonci.plugins</groupId>
+                        <artifactId>gerrit-build-config</artifactId>
                         <version>1.2.8-SNAPSHOT</version>
                     </dependency>
                 </dependencies>
@@ -148,7 +107,6 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>2.3.2</version>
                 <configuration>
                     <xmlOutput>true</xmlOutput>
                     <!-- Optional derectory to put findbugs xdoc xml report -->
@@ -195,13 +153,13 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.hudson-ci.plugins.gerrit</groupId>
+                <groupId>org.hudsonci.plugins</groupId>
                 <artifactId>gerrit-events</artifactId>
                 <version>1.2.8-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.hudson-ci.plugins.gerrit</groupId>
-                <artifactId>build-config</artifactId>
+                <groupId>org.hudsonci.plugins</groupId>
+                <artifactId>gerrit-build-config</artifactId>
                 <version>1.2.8-SNAPSHOT</version>
             </dependency>
         </dependencies>

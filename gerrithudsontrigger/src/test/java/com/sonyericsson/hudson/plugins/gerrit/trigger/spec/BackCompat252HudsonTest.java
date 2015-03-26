@@ -27,6 +27,7 @@ import com.sonyericsson.hudson.plugins.gerrit.gerritevents.dto.GerritEventType;
 import com.sonyericsson.hudson.plugins.gerrit.gerritevents.dto.events.DraftPublished;
 import com.sonyericsson.hudson.plugins.gerrit.gerritevents.dto.events.GerritTriggeredEvent;
 import com.sonyericsson.hudson.plugins.gerrit.gerritevents.dto.events.PatchsetCreated;
+import com.sonyericsson.hudson.plugins.gerrit.trigger.GerritHudsonTestCase;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.PluginImpl;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.BadgeAction;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.GerritManualCause;
@@ -49,12 +50,10 @@ import hudson.model.Result;
 import hudson.model.TopLevelItem;
 import hudson.util.RunList;
 import org.apache.sshd.SshServer;
-import org.jvnet.hudson.test.HudsonTestCase;
 import org.jvnet.hudson.test.recipes.LocalData;
 
 import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
@@ -65,7 +64,7 @@ import static org.junit.Assert.assertThat;
  *
  * @author Robert Sandell &lt;robert.sandell@sonyericsson.com&gt;
  */
-public class BackCompat252HudsonTest extends HudsonTestCase {
+public class BackCompat252HudsonTest extends GerritHudsonTestCase {
 
     /**
      * The stream-events command.
@@ -199,7 +198,7 @@ public class BackCompat252HudsonTest extends HudsonTestCase {
         FreeStyleProject project = (FreeStyleProject)item;
         server.waitForCommand(GERRIT_STREAM_EVENTS, 2000);
         PluginImpl.getInstance().triggerEvent(Setup.createPatchsetCreated());
-        RunList<FreeStyleBuild> builds = DuplicatesUtil.waitForBuilds(project, 4, 5000);
+        RunList<FreeStyleBuild> builds = DuplicatesUtil.waitForBuilds(project, 4, 10000);
         //3 old builds + the new one.
         assertEquals(4, builds.size());
         assertSame(Result.SUCCESS, builds.getLastBuild().getResult());

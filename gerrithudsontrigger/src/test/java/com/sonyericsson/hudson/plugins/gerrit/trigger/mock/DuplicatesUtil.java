@@ -25,22 +25,18 @@
 package com.sonyericsson.hudson.plugins.gerrit.trigger.mock;
 
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.sonyericsson.hudson.plugins.gerrit.gerritevents.dto.events.PatchsetCreated;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.GerritTrigger;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.data.Branch;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.data.CompareType;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.data.GerritProject;
-import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.data.GerritProject.DescriptorImpl;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.events.PluginCommentAddedEvent;
 import com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.events.PluginGerritEvent;
 import hudson.model.AbstractBuild;
 import hudson.model.FreeStyleBuild;
 import hudson.model.FreeStyleProject;
-import hudson.model.Hudson;
 import hudson.util.RunList;
-import org.jvnet.hudson.test.HudsonTestCase;
-import org.jvnet.hudson.test.HudsonTestCase.WebClient;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.net.URI;
@@ -48,6 +44,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import org.jvnet.hudson.test.HudsonTestCase;
+import org.jvnet.hudson.test.HudsonTestCase.WebClient;
 
 /**
  * @author Robert Sandell &lt;robert.sandell@sonyericsson.com&gt;
@@ -72,7 +70,7 @@ public abstract class DuplicatesUtil {
      */
     public static FreeStyleProject createGerritTriggeredJob(HudsonTestCase base, String name) throws Exception {
     	
-        FreeStyleProject p = Hudson.getInstance().createProject(FreeStyleProject.class, name);
+        FreeStyleProject p = base.hudson.createProject(FreeStyleProject.class, name);
         List<GerritProject> projects = new LinkedList<GerritProject>();
         GerritProject gp = new GerritProject(CompareType.ANT, "**",
                 Collections.singletonList(new Branch(CompareType.ANT, "**")), null);
@@ -82,7 +80,14 @@ public abstract class DuplicatesUtil {
                 null, null, null, null, null, null, null, null, null, null,
                 false, true, null, null, null, null, null, null, null, null, false, null);
         p.addTrigger(trigger);
-        base.submit(base.createWebClient().getPage(p, "configure").getFormByName("config"));
+        
+        WebClient wc = base.createWebClient();
+        wc.setThrowExceptionOnScriptError(false);
+        
+        HtmlPage page = wc.getPage(p, "configure");
+        HtmlForm form = page.getFormByName("config");
+        base.submit(form);
+
         
         return p;
     }
@@ -112,7 +117,14 @@ public abstract class DuplicatesUtil {
                 null, null, null, null, null, null, null, null, null, null, false, true,
                 null, null, null, null, null, null, null, list, true, filepath);
         p.addTrigger(trigger);
-        base.submit(base.createWebClient().getPage(p, "configure").getFormByName("config"));
+
+        WebClient wc = base.createWebClient();
+        wc.setThrowExceptionOnScriptError(false);
+        
+        HtmlPage page = wc.getPage(p, "configure");
+        HtmlForm form = page.getFormByName("config");
+        base.submit(form);
+        
         return p;
     }
 
@@ -137,11 +149,18 @@ public abstract class DuplicatesUtil {
         p.addTrigger(new GerritTrigger(projects,
                 null, null, null, null, null, null, null, null, null, null,
                 false, true, null, null, null, null, null, null, null, list, false, null));
-        base.submit(base.createWebClient().getPage(p, "configure").getFormByName("config"));
-        DescriptorImpl descriptor = (DescriptorImpl) Hudson.getInstance().getDescriptor(GerritProject.class);
-        System.out.println(descriptor);
         
-        descriptor = (DescriptorImpl) Hudson.getInstance().getDescriptor(GerritTrigger.class);
+        WebClient wc = base.createWebClient();
+        wc.setThrowExceptionOnScriptError(false);
+        
+        HtmlPage page = wc.getPage(p, "configure");
+        HtmlForm form = page.getFormByName("config");
+        base.submit(form);
+        
+//        DescriptorImpl descriptor = (DescriptorImpl) Hudson.getInstance().getDescriptor(GerritProject.class);
+//        System.out.println(descriptor);
+//        
+//        descriptor = (DescriptorImpl) Hudson.getInstance().getDescriptor(GerritTrigger.class);
         return p;
     }
 

@@ -9,7 +9,7 @@
     
     <groupId>org.hudsonci.plugins</groupId>
     <artifactId>gerrit-trigger-parent</artifactId>
-    <version>1.6.4-h-2</version>
+    <version>1.6.4-h-2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Gerrit Trigger Pom</name>
